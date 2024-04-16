@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.4</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>com.congwei</groupId>
+    <artifactId>multi-module-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>multi-module</name>
+    <description>multi-module</description>
+
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>start</module>
+        <module>application</module>
+    </modules>
+
+    <properties>
+        <java.version>17</java.version>
+        <springboot.version>3.2.4</springboot.version>
+        <start.version>0.0.1-SNAPSHOT</start.version>
+        <application.version>0.0.1-SNAPSHOT</application.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+<!--            子模块-->
+            <dependency>
+                <groupId>com.congwei</groupId>
+                <artifactId>start</artifactId>
+                <version>${start.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.congwei</groupId>
+                <artifactId>application</artifactId>
+                <version>${application.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <scope>test</scope>
+                <version>${springboot.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>
