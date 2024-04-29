@@ -4,6 +4,8 @@ import com.congwei.checkcode.CreateImageCode;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
@@ -20,6 +22,20 @@ public class CheckCodeController {
         response.setContentType("image/jpeg");
         httpSession.setAttribute("check-code", createImageCode.getCode());
         createImageCode.write(response.getOutputStream());
+    }
+
+    @PostMapping("/vertify")
+    public void vertify(HttpSession httpSession, @RequestBody Vertify vertify) throws Exception {
+        String expected = (String) httpSession.getAttribute("check-code");
+
+        System.out.println(expected);
+        System.out.println(vertify.getCode());
+
+        if (!expected.equals(vertify.getCode())) {
+            throw new Exception("wrong code");
+        }
+
+        System.out.println("correct code");
     }
 
 }
